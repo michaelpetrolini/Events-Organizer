@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Events Organizer</string>
+    <string name="add_event">Add Event</string>
+    <string name="edit_event">Edit Event</string>
+    <string name="event_name">Event Name</string>
+    <string name="description">Description</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="start_date">Start date</string>
+    <string name="end_date">End date</string>
+    <string name="start_day">Start day</string>
+    <string name="end_day">End day</string>
+</resources>
