@@ -2,6 +2,7 @@ package it.petrolinim.eventsorganizer
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 import android.widget.TextView
@@ -21,7 +22,8 @@ class EventEditor: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.event_editor)
 
-        val startDay = findViewById<TextView>(R.id.startDayEntry)
+        val startDay = findViewById<TextView>(R.id.etStartDay)
+        startDay.showSoftInputOnFocus = false
         val startDateSetListener =
             DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
                 startCal.set(Calendar.YEAR, year)
@@ -32,7 +34,8 @@ class EventEditor: AppCompatActivity() {
 
         startDay.setOnTouchListener { _, event -> popupDateForm(event, startDateSetListener, startCal)}
 
-        val endDay = findViewById<TextView>(R.id.endDayEntry)
+        val endDay = findViewById<TextView>(R.id.etEndDay)
+        endDay.showSoftInputOnFocus = false
         val endDateSetListener =
             DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
                 endCal.set(Calendar.YEAR, year)
@@ -41,14 +44,20 @@ class EventEditor: AppCompatActivity() {
 
                 updateDate(endDay, endCal)}
 
-        endDay.setOnTouchListener { _, event -> popupDateForm(event, endDateSetListener, endCal)}
+        endDay.setOnTouchListener{ _, event -> popupDateForm(event, endDateSetListener, endCal)}
 
-        saveBtn.setOnClickListener {
-            val event = Event(title = nameEntry.text.toString(),
-                                description = descriptionEntry.text.toString(),
-                                startDay = startCal.time,
-                                endDay = endCal.time)
+        btnSave.setOnClickListener{
+            val event = Event(
+                title = etName.text.toString(),
+                description = etDescription.text.toString(),
+                startDay = startCal.time,
+                endDay = endCal.time)
             dbHelper.addEvent(event)
+            startActivity(Intent(this, MainActivity::class.java))
+        }
+
+        btnCancel.setOnClickListener{
+            startActivity(Intent(this, MainActivity::class.java))
         }
     }
 

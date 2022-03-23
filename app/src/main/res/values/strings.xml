@@ -10,4 +10,8 @@
     <string name="end_date">End date</string>
     <string name="start_day">Start day</string>
     <string name="end_day">End day</string>
+    <string name="delete_event">Delete event</string>
+    <string name="delete_event_message">Sei sicuro di voler eliminare questo evento?</string>
+    <string name="yes">Sì</string>
+    <string name="no">No</string>
 </resources>

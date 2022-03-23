@@ -18,25 +18,41 @@ class EventsOrganizerDbHelper(context: Context) : SQLiteOpenHelper(context, DATA
         const val DESCRIPTION = "description"
         const val START_DAY = "startDay"
         const val END_DAY = "endDay"
+        const val CREATE_QUERY = "CREATE TABLE $TABLE_NAME (" +
+                "${BaseColumns._ID} INTEGER PRIMARY KEY," +
+                "$NAME TEXT," +
+                "$DESCRIPTION TEXT," +
+                "$START_DAY LONG," +
+                "$END_DAY LONG)"
+        const val DROP_QUERY = "DROP TABLE IF EXISTS $TABLE_NAME"
+        const val SELECT_QUERY = "SELECT  * FROM $TABLE_NAME ORDER BY $START_DAY"
+        const val DELETE_QUERY = "DELETE FROM $TABLE_NAME WHERE ${BaseColumns._ID} = ?"
+    }
+
+    object EventNews: BaseColumns {
+        const val TABLE_NAME = "eventNews"
+        const val EVENT_ID = "eventID"
+        const val MESSAGE = "message"
+        const val DATE = "date"
+        const val CREATE_QUERY = "CREATE TABLE $TABLE_NAME (" +
+                "${BaseColumns._ID} INTEGER PRIMARY KEY," +
+                "$EVENT_ID INTEGER," +
+                "$MESSAGE TEXT," +
+                "$DATE LONG)"
+        const val DROP_QUERY = "DROP TABLE IF EXISTS $TABLE_NAME"
+        const val SELECT_QUERY = "SELECT * FROM $TABLE_NAME WHERE $EVENT_ID = ? ORDER BY $DATE"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
-        val createQuery =
-            "CREATE TABLE ${Events.TABLE_NAME} (" +
-                    "${BaseColumns._ID} INTEGER PRIMARY KEY," +
-                    "${Events.NAME} TEXT," +
-                    "${Events.DESCRIPTION} TEXT," +
-                    "${Events.START_DAY} LONG," +
-                    "${Events.END_DAY} LONG)"
-
-        db.execSQL(createQuery)
+        db.execSQL(Events.CREATE_QUERY)
+        db.execSQL(EventNews.CREATE_QUERY)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         // This database is only a cache for online data, so its upgrade policy is
         // to simply to discard the data and start over
-        val deleteQuery = "DROP TABLE IF EXISTS ${Events.TABLE_NAME}"
-        db.execSQL(deleteQuery)
+        db.execSQL(Events.DROP_QUERY)
+        db.execSQL(EventNews.DROP_QUERY)
         onCreate(db)
     }
 
@@ -63,29 +79,43 @@ class EventsOrganizerDbHelper(context: Context) : SQLiteOpenHelper(context, DATA
         return result
     }
 
+    fun deleteEvent(id: Long?): Int {
+        if (id == null){
+            throw Exception("Event ID not set.")
+        }
+
+        val db = this.writableDatabase
+        val statement = db.compileStatement(Events.DELETE_QUERY)
+        statement.bindLong(1, id)
+        val result = statement.executeUpdateDelete()
+        db.close()
+        return result
+    }
+
     @SuppressLint("Range")
     fun getEvents(): MutableList<Event> {
         val eventsList: ArrayList<Event> = ArrayList()
-        val selectQuery = "SELECT  * FROM ${Events.TABLE_NAME}"
         val db = this.readableDatabase
         val cursor: Cursor?
         try{
-            cursor = db.rawQuery(selectQuery, null)
+            cursor = db.rawQuery(Events.SELECT_QUERY, null)
         }catch (e: SQLiteException) {
-            db.execSQL(selectQuery)
+            db.execSQL(Events.SELECT_QUERY)
             return ArrayList()
         }
+        var id: Long
         var name: String
         var description: String
         var startDay: Date
         var endDay: Date
         if (cursor.moveToFirst()) {
             do {
+                id = cursor.getLong(cursor.getColumnIndex(BaseColumns._ID))
                 name = cursor.getString(cursor.getColumnIndex(Events.NAME))
                 description = cursor.getString(cursor.getColumnIndex(Events.DESCRIPTION))
                 startDay = Date(cursor.getLong(cursor.getColumnIndex(Events.START_DAY)))
                 endDay = Date(cursor.getLong(cursor.getColumnIndex(Events.END_DAY)))
-                val emp= Event(title = name, description = description, startDay = startDay, endDay = endDay)
+                val emp= Event(id = id, title = name, description = description, startDay = startDay, endDay = endDay)
                 eventsList.add(emp)
             } while (cursor.moveToNext())
         }
