@@ -9,74 +9,47 @@
     android:paddingBottom="8dp">
 
     <TextView
-        android:id="@+id/tvEventEditorTitle"
+        android:id="@+id/tvFriendEditorTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/edit_event"
+        android:text="@string/add_friend"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/etName"
+        android:id="@+id/etFriendID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/event_name"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEventEditorTitle"
+        android:inputType="textPersonName"
+        android:hint="@string/friend_id"
         android:autofillHints=""
-        android:inputType="textShortMessage" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvFriendEditorTitle" />
 
     <EditText
-        android:id="@+id/etDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/description"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etName"
-        android:autofillHints=""
-        android:inputType="textLongMessage" />
-
-    <EditText
-        android:id="@+id/etStartDay"
+        android:id="@+id/etFriendName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/start_day"
+        android:inputType="textPersonName"
+        android:hint="@string/name"
         android:autofillHints=""
-        android:inputType="date"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etDescription"/>
+        app:layout_constraintTop_toBottomOf="@+id/etFriendID" />
 
     <EditText
-        android:id="@+id/etEndDay"
+        android:id="@+id/etFriendSurname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/end_day"
+        android:inputType="textPersonName"
+        android:hint="@string/surname"
         android:autofillHints=""
-        android:inputType="date"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etStartDay"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvSelectFriends"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEndDay" />
-
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/save"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/etFriendName"/>
 
     <Button
         android:id="@+id/btnCancel"
@@ -86,4 +59,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

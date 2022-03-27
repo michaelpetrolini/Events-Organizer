@@ -12,6 +12,14 @@
     <string name="end_day">End day</string>
     <string name="delete_event">Delete event</string>
     <string name="delete_event_message">Sei sicuro di voler eliminare questo evento?</string>
+    <string name="delete_user_message">Sei sicuro di voler eliminare questo utente?</string>
+    <string name="edit_event_message">Sei sicuro di voler modificare questo evento?</string>
     <string name="yes">Sì</string>
     <string name="no">No</string>
+    <string name="friends">Friends</string>
+    <string name="add_friend">Add Friend</string>
+    <string name="delete_friend">Delete Friend</string>
+    <string name="friend_id">Friend ID</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
 </resources>

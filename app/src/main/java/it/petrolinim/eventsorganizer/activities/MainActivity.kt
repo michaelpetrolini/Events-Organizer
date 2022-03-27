@@ -1,9 +1,12 @@
-package it.petrolinim.eventsorganizer
+package it.petrolinim.eventsorganizer.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import it.petrolinim.eventsorganizer.adapters.EventAdapter
+import it.petrolinim.eventsorganizer.EventsOrganizerDbHelper
+import it.petrolinim.eventsorganizer.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -19,8 +22,8 @@ class MainActivity : AppCompatActivity() {
         rvEvents.adapter = eventAdapter
         rvEvents.layoutManager = LinearLayoutManager(this)
 
-        addEvent.setOnClickListener{
-            startActivity(Intent(this, EventEditor::class.java))
-        }
+        btnAddEvent.setOnClickListener{startActivity(Intent(this, EventEditor::class.java))}
+
+        btnGetFriends.setOnClickListener{startActivity(Intent(this, Friends::class.java))}
     }
 }

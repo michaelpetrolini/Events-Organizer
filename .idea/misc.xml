@@ -6,6 +6,10 @@
         <entry key="..\:/Users/Omi069/AndroidStudioProjects/EventsOrganizer/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Omi069/AndroidStudioProjects/EventsOrganizer/app/src/main/res/layout/event.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Omi069/AndroidStudioProjects/EventsOrganizer/app/src/main/res/layout/event_editor.xml" value="0.25" />
+        <entry key="..\:/Users/Omi069/AndroidStudioProjects/EventsOrganizer/app/src/main/res/layout/friend.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Omi069/AndroidStudioProjects/EventsOrganizer/app/src/main/res/layout/friend_editor.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Omi069/AndroidStudioProjects/EventsOrganizer/app/src/main/res/layout/friends_list.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Omi069/AndroidStudioProjects/EventsOrganizer/app/src/main/res/layout/select_friend.xml" value="0.11302083333333333" />
       </map>
     </option>
   </component>
